@@ -15,3 +15,10 @@ mycursor = mydb.cursor()
 
 # Now you can use mycursor to execute commands
 
+mycursor.execute("""
+CREATE TABLE teachers_salaries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    teacher_name VARCHAR(255),
+    salary VARCHAR(255)
+)
+""")
