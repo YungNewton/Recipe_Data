@@ -1,4 +1,5 @@
 import mysql.connector
+import csv
 
 # Create a connection
 mydb = mysql.connector.connect(
@@ -16,15 +17,22 @@ mycursor = mydb.cursor()
 
 # Now you can use mycursor to execute commands
 
-query = """
-LOAD DATA LOCAL INFILE 'users.csv'
-INTO TABLE Recipes
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
-(RecipeName, Ingredients ,Preparation)
-"""
+with open('users.csv', 'r') as f:
+    reader = csv.reader(f)
 
-mycursor.execute(query)
+    # Skip the header row
+    next(reader)
+
+    # Prepare the INSERT statement
+    query = """
+    INSERT INTO Recipes (
+        RecipeName, Ingredients, Preparation
+    ) VALUES (%s, %s, %s)
+    """
+
+    # Iterate over the rows in the CSV file and execute the INSERT statement for each one
+    for row in reader:
+        mycursor.execute(query, row)
+
+# Commit the transaction
 mydb.commit()
