@@ -8,6 +8,8 @@ mydb = mysql.connector.connect(
   database="recipe"  # Include this line if you want to connect to a specific database
 )
 
+if mydb.is_connected():
+    print('connected successfully')
 # Create a cursor
 mycursor = mydb.cursor()
 
