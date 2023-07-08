@@ -42,3 +42,34 @@ def change_password(newpass, oldpasswords):
 print(change_password("James001", ["James003", "Hello111"]))  # Output: False
 print(change_password("James001", ["Iron001", "helloA114599"]))  # Output: True
 print(change_password("James001", ["ires0087"]))  # Output: False
+
+
+def factorial(n):
+    # Factorial of 0 is 1
+    if n == 0:
+        return 1
+    else:
+        fact = 1
+        for i in range(1, n + 1):
+            fact *= i
+        return fact
+
+# Test the function
+print(factorial(0))  # Output: 1
+print(factorial(1))  # Output: 1
+print(factorial(7))  # Output: 5040
+
+
+def fibonacci(n):
+    # Initialize the Fibonacci sequence with the first two numbers
+    fib_seq = [0, 1]
+
+    # Generate the rest of the sequence
+    while len(fib_seq) < n:
+        fib_seq.append(fib_seq[-1] + fib_seq[-2])
+
+    return fib_seq
+
+# Test the function
+print(fibonacci(5))  # Output: [0, 1, 1, 2, 3]
+print(fibonacci(8))  # Output: [0, 1, 1, 2, 3, 5, 8, 13]
