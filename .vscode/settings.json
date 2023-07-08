@@ -10,7 +10,7 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "FirstConnection",
-            "database": "recipe",
+            "database": "nj_state_teachers_salaries",
             "username": "root",
             "password": "Dbeastinme1#"
         }
