@@ -23,26 +23,31 @@ df.dropna(subset=numerical_cols, inplace=True)
 # df['column_name'] = df['column_name'].astype(int)  # to convert to int
 # df['column_name'] = df['column_name'].astype(float)  # to convert to float
 
-# # Identify string/object columns
-# string_cols = df.select_dtypes(include=['object']).columns
+# Identify string/object columns
+string_cols = df.select_dtypes(include=['object']).columns
 
-# # Remove any leading and trailing spaces
-# for col in string_cols:
-#     df[col] = df[col].str.strip()
 
-# # Columns to clean
-# cols_to_clean = ['primary_job', 'secondary_job', 'third_job']
+# Columns to clean
+cols_to_clean = []
 
-# # Regular expression pattern for characters to remove
-# pattern = '[^A-Za-z0-9\s]'
+# Remove any leading and trailing spaces
+for col in string_cols:
+    df[col] = df[col].str.strip()
+    cols_to_clean.append(col)
 
-# # Perform cleaning
-# for col in cols_to_clean:
-#     df[col] = df[col].str.replace(pattern, '', regex=True)
+#print(cols_to_clean)
 
-# # Drop duplicate rows
-# df = df.drop_duplicates()
+# Regular expression pattern for characters to remove
+pattern = '[^A-Za-z0-9\s]'
 
+# Perform cleaning
+for col in cols_to_clean:
+    df[col] = df[col].str.replace(pattern, '', regex=True)
+
+# Drop duplicate rows
+df = df.drop_duplicates()
+
+df.to_csv('cleaned_data.csv', index=False)
 
 # #print(df)
 
