@@ -2,20 +2,25 @@ import pandas as pd
 import numpy as np
 
 # Create the dataframe
-df = pd.read_csv('/Users/decagon/Downloads/cs101-pset4/nj_teachers_salaries_pset4.csv')
+df = pd.read_csv('nj_teachers_salaries_pset4.csv')
 
 df.dropna(how='all', inplace=True)
 
 # 1. Identify numerical/boolean columns
 numerical_cols = df.select_dtypes(include=[np.number, 'bool']).columns
-#print(numerical_cols)
+print(numerical_cols)
 # 2. Replace invalid characters with np.NAN
 # We assume that 'invalid characters' means non-numeric in numeric columns
 for col in numerical_cols:
-    df[col] = pd.to_numeric(df[col], errors='coerce')  # invalid parsing will be set as NaN
+    df[col] = df[col].replace('[^0-9]', np.NaN, regex=True)
+
 
 # 3. Drop rows containing NaN values
 df.dropna(subset=numerical_cols, inplace=True)
+
+
+# Convert numerical columns to the appropriate data type
+df[numerical_cols] = df[numerical_cols].astype(float)
 
 # 4. Set the correct data type for numerical columns
 # In this case, pandas should have automatically determined the correct data types. 
@@ -52,4 +57,36 @@ df.to_csv('cleaned_data.csv', index=False)
 # #print(df)
 
 # Display information about the dataframe
-df.info()
+#df.info()
+
+import pandas as pd
+import pymysql
+
+# create a connection to the database
+db = pymysql.connect(host='localhost', user='user', password='passwd', db='database_name')
+
+# write your SQL query
+query = 'SELECT * FROM table_name ORDER BY RAND() LIMIT 100'
+
+# use pandas to execute the query and put the result into a DataFrame
+df = pd.read_sql(query, con=db)
+
+# write the DataFrame to a CSV file
+df.to_csv('sample_data.csv', index=False)
+
+query = """
+    SET @seed = 7;
+    SELECT * FROM table_name
+    ORDER BY RAND(@seed)
+    LIMIT 777;
+"""
+
+# use pandas to execute the query and put the result into a DataFrame
+df = pd.read_sql(query, con=db)
+
+# write the DataFrame to a CSV file
+df.to_csv('sample.csv', index=False)
+
+# close the database connection
+db.close()
+
