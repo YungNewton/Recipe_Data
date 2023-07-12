@@ -15,7 +15,7 @@ if mydb.is_connected():
 # Create a cursor
 mycursor = mydb.cursor()
 
-# Now you can use mycursor to execute commands
+#Now you can use mycursor to execute commands
 
 with open('users.csv', 'r') as f:
     reader = csv.reader(f)
