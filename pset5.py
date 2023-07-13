@@ -56,3 +56,50 @@ print(df_zip.head())
 # display the first few rows of df_defects
 print("\nFirst few rows of df_defects:")
 print(df_defects.head())
+
+def isValidString(s):
+    """
+    Checks if a given string is a well-formed QC test result string.
+    Parameters:
+        s (str): The string to check.
+    Returns:
+        bool: isValid, True if the string is well-formed, False otherwise.
+    """
+
+    # A batch of results must begin with the character Q (case sensitive)
+    if not s.startswith('Q'):
+        return False
+
+    # Split the string into batches of results, discarding the initial empty string due to the startswith('Q')
+    batches = s.split('Q')[1:]
+    
+    for batch in batches:
+        # Check if the batch reports both pass and defect results
+        if 'p' not in batch or 'd' not in batch:
+            return False
+
+        # Determine the order of 'p' and 'd'
+        p_index = batch.index('p')
+        d_index = batch.index('d')
+
+        # Define start, middle, and end parts based on the order of 'p' and 'd'
+        start, middle, end = (batch[:p_index], batch[p_index+1:d_index], batch[d_index+1:]) if p_index < d_index else (batch[:d_index], batch[d_index+1:p_index], batch[p_index+1:])
+
+        # Check if start, middle, and end are non-negative integers
+        if not start.isdigit() or not middle.isdigit() or not end.isdigit():
+            return False
+
+        # Check for leading zeros
+        if (len(start) > 1 and start.startswith('0')) or (len(middle) > 1 and middle.startswith('0')) or (len(end) > 1 and end.startswith('0')):
+            return False
+
+        # Check if the total number of tests is greater than zero
+        if int(start) == 0:
+            return False
+
+        # Check if the total number of tests matches the number of pass and defect results
+        if int(start) != int(middle) + int(end):
+            return False
+
+    # If all batches pass the checks, the string is valid
+    return True
