@@ -62,7 +62,6 @@ def isValidString(s):
             passes - Total number of pass results in the string if well-formed, undefined otherwise.
             defects - Total number of defect results in the string if well-formed, undefined otherwise.
     """
-    import numpy as np
 
     # Check if s is a string and is not NaN. If it's not a string or it's NaN, it's invalid.
     if not isinstance(s, str) or s is np.nan:
