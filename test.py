@@ -79,7 +79,7 @@ def checker(model_solution: FunctionSignature, student_solution: FunctionSignatu
 # print(unpair_at_most(2, [(10,20),(30,40),(50,60)]))
 # print(unpair_at_most(4, [(10,20),(30,40),(50,60)]))
 # print(unpair_at_most(-1, [(10,20),(30,40),(50,60)]))
-# print(checker(model_solution, unpairAtMost, test_cases))
+print(checker(model_solution, unpairAtMost, test_cases))
 
 print(unpairAtMost(0, []))  # Expected output: []
 print(unpairAtMost(5, []))  # Expected output: []
@@ -88,5 +88,3 @@ print(unpairAtMost(2, [(10,20),(30,40)]))
 print(unpairAtMost(2, [(10,20),(30,40),(50,60)]))
 print(unpairAtMost(4, [(10,20),(30,40),(50,60)]))
 print(unpairAtMost(-1, [(10,20),(30,40),(50,60)]))
-
-print(checker(model_solution, unpairAtMost, test_cases))
