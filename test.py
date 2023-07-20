@@ -48,13 +48,9 @@ test_cases = [
 def model_solution(n: int, pairs: list[tuple[int,int]]) -> list[int]:
     return [] if n <= 0 else [num for pair in pairs[:n] for num in pair]
 
-def unpairAtMost(n: int, pairs: List[Tuple[int, int]]) -> List[int]:
-    if n <= 0:
-        return []
-    else:
-        pairs[:n] = [num for pair in pairs[:n] for num in pair]
-        return pairs[:2*n]
-
+def unpairAtMost(n: int, pairs: list[tuple[int,int]]) -> list[int]:
+    pairs[:n] = [pair for pair in pairs[:n] for num in pair]
+    return pairs
 import copy
 
 def checker(model_solution: FunctionSignature, student_solution: FunctionSignature, test_cases: list[Input]) -> bool:
