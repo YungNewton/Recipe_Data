@@ -13,16 +13,16 @@ df_defects = pd.read_csv('/Users/decagon/Downloads/cs101-pset5/defect_returns_by
 
 #your code here
 # display the first few rows of df_test
-# print("First few rows of df_test:")
-# print(df_test.head())
+print("First few rows of df_test:")
+print(df_test.head())
 
-# # display the first few rows of df_zip
-# print("\nFirst few rows of df_zip:")
-# print(df_zip.head())
+# display the first few rows of df_zip
+print("\nFirst few rows of df_zip:")
+print(df_zip.head())
 
-# # display the first few rows of df_defects
-# print("\nFirst few rows of df_defects:")
-# print(df_defects.head())
+# display the first few rows of df_defects
+print("\nFirst few rows of df_defects:")
+print(df_defects.head())
 
 #your code here
 def CleanColumnHeading(df):
@@ -44,15 +44,15 @@ df_defects = CleanColumnHeading(df_defects)
 # Rename specific columns in df_zip
 df_zip.rename(columns={'zip_code': 'zip', 'primary_city': 'city'}, inplace=True)
 
-# # Print out column names for each dataframe
-# print("df_test columns:", df_test.columns)
-# print("df_zip columns:", df_zip.columns)
-# print("df_defects columns:", df_defects.columns)
+# Print out column names for each dataframe
+print("df_test columns:", df_test.columns)
+print("df_zip columns:", df_zip.columns)
+print("df_defects columns:", df_defects.columns)
 
 #your code here
 #your code here
 
-#your code here
+# #your code here
 def isValidString(s):
     """
     Checks if a given string is a well-formed QC test result string.
@@ -164,17 +164,17 @@ print(df_new.head())
 print(df_new.tail())
 
 #your code here
-# # Filter states with defects > 5000
-# filter1 = df_new[df_new['total_defects'] > 5000]
-# print(filter1)
-# print("Number of rows in filter1: ", len(filter1))
+# Filter states with defects > 5000
+filter1 = df_new[df_new['total_defects'] > 5000]
+print(filter1)
+print("Number of rows in filter1: ", len(filter1))
 
-# # Filter cities with more than 10 tests passed
-# filter2 = df_new[df_new['pass'] > 10]
-# print(filter2)
-# print("Number of rows in filter2: ", len(filter2))
+# Filter cities with more than 10 tests passed
+filter2 = df_new[df_new['pass'] > 10]
+print(filter2)
+print("Number of rows in filter2: ", len(filter2))
 
-# # Filter plants with more than 10 QC tests passed, more than 5000 defects, and an IRS Estimated Population greater than 30000
-# filter3 = df_new[(df_new['pass'] > 10) & (df_new['total_defects'] > 5000) & (df_new['irs_estimated_population'] > 30000)]
-# print(filter3)
-# print("Number of rows in filter3: ", len(filter3))
+# Filter plants with more than 10 QC tests passed, more than 5000 defects, and an IRS Estimated Population greater than 30000
+filter3 = df_new[(df_new['pass'] > 10) & (df_new['total_defects'] > 5000) & (df_new['irs_estimated_population'] > 30000)]
+print(filter3)
+print("Number of rows in filter3: ", len(filter3))

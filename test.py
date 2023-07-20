@@ -51,22 +51,16 @@ def model_solution(n: int, pairs: list[tuple[int,int]]) -> list[int]:
 def unpairAtMost(n: int, pairs: list[tuple[int,int]]) -> list[int]:
     pairs[:n] = [pair for pair in pairs[:n] for num in pair]
     return pairs
-import copy
 
 def checker(model_solution: FunctionSignature, student_solution: FunctionSignature, test_cases: list[Input]) -> bool:
     for test_case in test_cases:
-        # We use copy.deepcopy to create completely separate copies of the test cases for each function
-        student_test_case = copy.deepcopy(test_case)
-        model_test_case = copy.deepcopy(test_case)
-
-        student_answer = student_solution(*student_test_case)
-        expected_answer = model_solution(*model_test_case)
+        student_answer = student_solution(*test_case)
+        expected_answer = model_solution(*test_case)
 
         if student_answer != expected_answer:
             return False
 
     return True
-
 
 # print(unpair_at_most(0, []))  # Expected output: []
 # print(unpair_at_most(5, []))  # Expected output: []
