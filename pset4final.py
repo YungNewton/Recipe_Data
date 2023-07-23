@@ -140,11 +140,12 @@ def identify_and_clean_cols(df, numeric_threshold=0.001):
     for col in df.columns:
         num_numeric_values = df[col].apply(is_numeric).sum()
         #.apply(is_numeric): The apply() method is used to apply a function to each element of the column. 
-        # In this case, the function being applied is is_numeric, which was previously defined as:
-        
+        # In this case, the function being applied is is_numeric, which was previously defined.
+
         if num_numeric_values / len(df) > numeric_threshold:
             numeric_cols.append(col)
-    
+        #num_numeric_values / len(df): This calculates the proportion of numeric values in the column df[col]. By dividing num_numeric_values by the total number of rows in the DataFrame, we get the proportion of numeric values in the column as a fraction between 0 and 1.
+        
     # Identify boolean columns
     boolean_cols = []
     for col in df.columns:

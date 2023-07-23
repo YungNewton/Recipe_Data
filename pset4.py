@@ -90,6 +90,9 @@ def identify_and_clean_cols(df, numeric_threshold=0.001):
     for col in df.columns:
         if df[col].apply(lambda x: is_boolean(x) or pd.isna(x)).all():  
             boolean_cols.append(col)
+    #lambda x: is_boolean(x) or pd.isna(x): This lambda function takes a single argument x (each element in the column) and checks if x is a boolean value (True or False) using the previously defined is_boolean() function. Additionally, it checks if x is NaN (Not a Number) using the pd.isna() function from the pandas library.
+    # The or operator is used to combine the two conditions. The lambda function will return True if x is a boolean value or if it is NaN. Otherwise, it will return False.
+    # .all(): The .all() method is used to check if all the elements in the resulting Series (after applying the lambda function) are True. If all the values are True, it means that all the values in the column are either boolean or NaN.
 
     # Clean and convert numeric columns
     for col in numeric_cols:
