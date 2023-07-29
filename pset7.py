@@ -73,10 +73,36 @@ class Order(Account):
                 self.balance += points
 
 # Creating an instance of Order class
-order1 = Order(1000, "HARVARD", 100 ,50.0,"0")
+order1 = Order(1000, "HARVARD", 50 ,45.0,"password")
 
 # Updating balance
 order1.update_balance()
 
 # Printing attributes of order1
 print("Balance: ", order1.get_balance())  # Expected Output: 20.0
+
+account = Account(1002, "OTHERS")
+print(f"Customer number is: {account.cust_num} \nUniversity: {account.u_name}\n")
+
+# Test Case 2 - Testing frequent dining points for HARVARD student with cust_num =1003,
+# u_name = "HARVARD", midterm = 82, meal_cost = 30, password = 'efgh'
+harvard_student_order = Order(1003, "HARVARD", 82 , 30 , 'efgh')
+harvard_student_order.update_balance()
+print(f"The HARVARD student's frequent dining balance = {harvard_student_order.get_balance()}\n")
+
+# Test Case 3 - Testing frequent dining points for OTHER student with cust_num =1004,
+# u_name = "OTHERS", midterm = 70, meal_cost = 40, password = 'ijkl'
+other_student_order = Order(1004, "OTHERS", 70, 40, 'ijkl')
+other_student_order.update_balance()
+print(f"The OTHER student's frequent dining balance = {other_student_order.get_balance()}\n")
+
+# Test Case 4 - Testing updating of midterm score
+print(f"Before updating: HARVARD student's midterm score = {harvard_student_order.get_midterm()}")
+harvard_student_order.set_midterm(90)
+print(f"After updating: HARVARD student's midterm score = {harvard_student_order.get_midterm()}\n")
+
+# Test Case 5 - Testing points reset when student forgets password
+print(f"Before forgetting password: HARVARD student's balance = {harvard_student_order.get_balance()}")
+harvard_student_order = Order(1003, "HARVARD", 90, 30 ,'0',harvard_student_order.get_balance())  # student forgot password
+harvard_student_order.update_balance()
+print(f"After forgetting password: HARVARD student's balance = {harvard_student_order.get_balance()}\n")
