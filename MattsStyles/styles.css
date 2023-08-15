@@ -4,3 +4,9 @@ div{
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+ul{
+    text-align: left;
+}
+body{
+    height: 150vh;
+}
